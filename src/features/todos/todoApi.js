@@ -42,7 +42,7 @@ const updateTodo = (updatedTodo) => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then((response) => console.log(response));
+  });
 };
 
 export default {
