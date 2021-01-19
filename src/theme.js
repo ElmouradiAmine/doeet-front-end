@@ -16,6 +16,7 @@ const colors = {
 };
 
 const fonts = {
+  heading: 'Montserrat',
   body: 'Montserrat',
 };
 const theme = extendTheme({

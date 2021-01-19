@@ -1,15 +1,34 @@
 import React from 'react';
-import * as Chakra from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+
+import InputBasic from './InputBasic';
+import InputPassword from './InputPassword';
 
 const Input = ({
   type, label, value, onChange, isRequired,
-}) => (
-  <Chakra.FormControl id={type} isRequired={isRequired}>
-    <Chakra.FormLabel fontWeight="bold">{label}</Chakra.FormLabel>
-    <Chakra.Input type={type} value={value} onChange={onChange} size="md" />
-  </Chakra.FormControl>
-);
+}) => {
+  if (type === 'password') {
+    return (
+      <InputPassword
+        type={type}
+        label={label}
+        value={value}
+        onChange={onChange}
+        isRequired={isRequired}
+      />
+    );
+  }
+
+  return (
+    <InputBasic
+      type={type}
+      label={label}
+      value={value}
+      onChange={onChange}
+      isRequired={isRequired}
+    />
+  );
+};
 
 Input.propTypes = {
   type: PropTypes.string.isRequired,

@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@chakra-ui/react';
-import Input from './ui/Input/Input';
-import Button from './ui/Button/Button';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+
+import LoginForm from './features/auth/components/LoginForm/LoginForm';
+import SignupForm from './features/auth/components/SignupForm/SignupForm';
+import Header from './ui/Header/Header';
+import TodosDashboard from './features/todos/components/TodosDashboard/TodosDashboard';
 
 function App() {
+  const [search, setSearch] = useState('');
+  const isConnected = localStorage.getItem('accessToken') !== null;
+  const handleSearchChange = (value) => setSearch(value);
   return (
-    <Box>
-      <Input type="email" label="E-mail" isRequired />
-      <Button label="Connexion" />
-    </Box>
+    <Router>
+      <Box
+        h="100vh"
+        backgroundImage="url('/images/background-pattern.png')"
+        backgroundColor="rgba(255, 255, 255, 0.75)"
+        backgroundBlendMode="overlay"
+        display="flex"
+        flexDirection="column"
+      >
+        <Switch>
+          <Route path="/login">
+            {isConnected ? <Redirect to="/app" /> : <LoginForm />}
+          </Route>
+          <Route path="/signup">
+            {isConnected ? <Redirect to="/app" /> : <SignupForm />}
+          </Route>
+          <Route path="/app">
+            <Header onSearch={handleSearchChange} search={search} />
+            <TodosDashboard search={search} />
+          </Route>
+          <Redirect to="/app" />
+        </Switch>
+      </Box>
+    </Router>
   );
 }
 
