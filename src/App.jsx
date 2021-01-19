@@ -14,6 +14,7 @@ import TodosDashboard from './features/todos/components/TodosDashboard/TodosDash
 
 function App() {
   const [search, setSearch] = useState('');
+  const isConnected = localStorage.getItem('accessToken') !== null;
   const handleSearchChange = (value) => setSearch(value);
   return (
     <Router>
@@ -27,10 +28,10 @@ function App() {
       >
         <Switch>
           <Route path="/login">
-            <LoginForm />
+            {isConnected ? <Redirect to="/app" /> : <LoginForm />}
           </Route>
           <Route path="/signup">
-            <SignupForm />
+            {isConnected ? <Redirect to="/app" /> : <SignupForm />}
           </Route>
           <Route path="/app">
             <Header onSearch={handleSearchChange} search={search} />
