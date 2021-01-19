@@ -83,10 +83,10 @@ const TodosDashboard = ({ search }) => {
         <Chakra.HStack justifyContent="space-between">
           <Chakra.HStack>
             <Chakra.Heading size="lg">Tâches</Chakra.Heading>
-            <Chakra.Text fontSize="xs" alignSelf="flex-end" color="gray.400" visibility={todos.length > 0 ? 'visible' : 'hidden'}>
-              {todos.filter((todo) => todo.isFinished).length}
+            <Chakra.Text fontSize="xs" alignSelf="flex-end" color="gray.400" visibility={todos?.length > 0 ? 'visible' : 'hidden'}>
+              {todos.filter((todo) => todo.isFinished)?.length}
               /
-              {todos.length}
+              {todos?.length}
             </Chakra.Text>
           </Chakra.HStack>
           <Chakra.IconButton colorScheme="primary" aria-label="add todo" icon={<AddIcon />} onClick={onOpen} />
