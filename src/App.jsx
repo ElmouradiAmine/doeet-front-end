@@ -28,10 +28,10 @@ function App() {
       >
         <Switch>
           <Route path="/login">
-            {isConnected ? <Redirect to="/app" /> : <LoginForm />}
+            <LoginForm />
           </Route>
           <Route path="/signup">
-            {isConnected ? <Redirect to="/app" /> : <SignupForm />}
+            <SignupForm />
           </Route>
           <Route path="/app">
             <Header onSearch={handleSearchChange} search={search} />
