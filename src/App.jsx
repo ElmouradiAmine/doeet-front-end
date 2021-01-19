@@ -14,7 +14,6 @@ import TodosDashboard from './features/todos/components/TodosDashboard/TodosDash
 
 function App() {
   const [search, setSearch] = useState('');
-  const isConnected = localStorage.getItem('accessToken') !== null;
   const handleSearchChange = (value) => setSearch(value);
   return (
     <Router>
